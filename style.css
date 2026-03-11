@@ -1,13 +1,13 @@
 :root {
-  --primary: #6c5ce7;
-  --secondary: #e84393;
-  --bg-dark: #0f0c29;
-  --glass: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.15);
+  --primary: #00b894; /* Vibrant Green */
+  --secondary: #fed330; /* Bright Yellow */
+  --bg-dark: #101814; /* Deep Forest Dark */
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.6);
-  --accent-fi: #003580; /* Finnish Blue */
-  --accent-en: #cf142b; /* Common Red for EN */
+  --accent-fi: #003580;
+  --accent-en: #cf142b;
 }
 
 * {
@@ -18,9 +18,9 @@
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   background: var(--bg-dark);
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +60,7 @@ body {
 }
 
 .blob-3 {
-  background: #00d2ff;
+  background: #f1c40f;
   top: 40%;
   left: 30%;
   animation-delay: -10s;
@@ -232,6 +232,17 @@ input:checked + .slider:before {
   line-height: 1.6;
   color: var(--text-primary);
   word-wrap: break-word;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  height: 80px;
+  padding: 0;
+}
+
+.text-area::placeholder {
+  color: var(--text-secondary);
 }
 
 .text-area.translated {
@@ -240,7 +251,7 @@ input:checked + .slider:before {
 }
 
 .result-card {
-  background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(232, 67, 147, 0.1));
+  background: linear-gradient(135deg, rgba(0, 184, 148, 0.1), rgba(254, 211, 48, 0.1));
 }
 
 /* Action Bar */
@@ -293,4 +304,44 @@ input:checked + .slider:before {
 @media (max-width: 480px) {
   .glass-text { font-size: 2.5rem; }
   .card { padding: 1rem; }
+}
+
+/* Footer Styles */
+.app-footer {
+  position: fixed;
+  bottom: 1.5rem;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.github-link:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.github-link svg {
+  transition: transform 0.3s ease;
+}
+
+.github-link:hover svg {
+  transform: rotate(10deg);
 }

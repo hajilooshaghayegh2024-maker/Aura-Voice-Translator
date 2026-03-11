@@ -24,6 +24,7 @@ const labelFi = document.getElementById('label-fi');
 let isListening = false;
 let currentLanguage = 'en-US'; // Default input
 let targetLanguage = 'fi';      // Default target
+let debounceTimer;
 
 // Set up Speech Recognition
 recognition.continuous = true;
@@ -94,7 +95,7 @@ recognition.onend = () => {
     isListening = false;
     micBtn.classList.remove('active');
     statusDot.classList.remove('listening');
-    if (!sourceText.textContent.trim() || sourceText.textContent === "Tap the mic to start...") {
+    if (!sourceText.value.trim()) {
         sourceTitle.textContent = "Tap to start";
     }
 };
@@ -119,21 +120,41 @@ recognition.onresult = (event) => {
     for (let i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
             finalTranscript = event.results[i][0].transcript;
-            sourceText.textContent = finalTranscript;
+            sourceText.value = finalTranscript;
             translateText(finalTranscript);
         } else {
             interimTranscript += event.results[i][0].transcript;
-            sourceText.textContent = interimTranscript;
+            sourceText.value = interimTranscript;
         }
     }
 };
+
+// Typing Event with Debounce
+sourceText.addEventListener('input', (e) => {
+    const text = e.target.value;
+    
+    // Reset status title if user starts typing
+    if (text.length > 0 && !isListening) {
+        sourceTitle.textContent = "Typing...";
+    }
+
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        if (text.trim().length > 0) {
+            translateText(text);
+            if (!isListening) {
+                sourceTitle.textContent = langToggle.checked ? "Finnish to English" : "English to Finnish";
+            }
+        }
+    }, 800); // Wait 800ms after last keystroke before translating
+});
 
 micBtn.addEventListener('click', () => {
     if (isListening) {
         recognition.stop();
     } else {
         recognition.start();
-        sourceText.textContent = "";
+        sourceText.value = "";
         targetText.textContent = "...";
     }
 });

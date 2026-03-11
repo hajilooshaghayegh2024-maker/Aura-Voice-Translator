@@ -1,0 +1,16 @@
+{
+  "name": "aura-voice-translator",
+  "version": "1.0.0",
+  "description": "Multilingual Voice Translator with Aura aesthetics",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -l 3000",
+    "dev": "npx serve -l 3000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}
