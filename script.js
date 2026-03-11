@@ -21,6 +21,101 @@ const statusDot = document.getElementById('status-dot');
 const labelEn = document.getElementById('label-en');
 const labelFi = document.getElementById('label-fi');
 
+// Grammar Elements
+const grammarOpen = document.getElementById('grammar-open');
+const grammarClose = document.getElementById('grammar-close');
+const grammarModal = document.getElementById('grammar-modal');
+const grammarContent = document.getElementById('grammar-content');
+const levelTabs = document.querySelectorAll('.level-tab');
+
+// Vocabulary Elements
+const vocabOpen = document.getElementById('vocab-open');
+const vocabClose = document.getElementById('vocab-close');
+const vocabModal = document.getElementById('vocab-modal');
+const vocabList = document.getElementById('vocab-list');
+const vocabSearch = document.getElementById('vocab-search');
+const vocabTabs = document.querySelectorAll('.vocab-tab');
+
+const vocabData = {
+    A1: [
+        { fi: "Terve", en: "Hello" }, { fi: "Kiitos", en: "Thank you" }, { fi: "Kyllä", en: "Yes" }, 
+        { fi: "Ei", en: "No" }, { fi: "Mitä kuuluu?", en: "How are you?" }, { fi: "Hyvää huomenta", en: "Good morning" },
+        { fi: "Anteeksi", en: "Sorry / Excuse me" }, { fi: "Näkemiin", en: "Goodbye" }, { fi: "Minä", en: "I" },
+        { fi: "Sinä", en: "You" }, { fi: "Hän", en: "He / She" }, { fi: "Me", en: "We" },
+        { fi: "He", en: "They" }, { fi: "Kissa", en: "Cat" }, { fi: "Koira", en: "Dog" },
+        { fi: "Talote", en: "House" }, { fi: "Kirja", en: "Book" }, { fi: "Vesi", en: "Water" },
+        { fi: "Ruoka", en: "Food" }, { fi: "Yksi", en: "One" }, { fi: "Kaksi", en: "Two" }
+    ],
+    B1: [
+        { fi: "Ymmärtää", en: "To understand" }, { fi: "Tarvita", en: "To need" }, { fi: "Mahdollisuus", en: "Opportunity / Chance" },
+        { fi: "Päättää", en: "To decide" }, { fi: "Vaikea", en: "Difficult" }, { fi: "Helppo", en: "Easy" },
+        { fi: "Tärkeä", en: "Important" }, { fi: "Kehittää", en: "To develop" }, { fi: "Yhteiskunta", en: "Society" },
+        { fi: "Ympäristö", en: "Environment" }, { fi: "Osallistua", en: "To participate" }, { fi: "Kokeilla", en: "To try" }
+    ],
+    C1: [
+        { fi: "Edellyttää", en: "To require / To prerequisite" }, { fi: "Riippumaton", en: "Independent" },
+        { fi: "Monimutkainen", en: "Complex" }, { fi: "Vaikutusvaltainen", en: "Influential" },
+        { fi: "Perusteellinen", en: "Thorough" }, { fi: "Samanaikaisesti", en: "Simultaneously" },
+        { fi: "Välttämätön", en: "Essential" }, { fi: "Kattava", en: "Comprehensive" }
+    ]
+};
+
+const grammarData = {
+    elementary: `
+        <div class="grammar-section">
+            <h3>Nouns: Cases (Elementary)</h3>
+            <ul>
+                <li><strong>Nominative:</strong> The basic form (e.g., <em>auto</em> - car).</li>
+                <li><strong>Genitive:</strong> Shows possession, adds '-n' (e.g., <em>auton</em> - car's).</li>
+                <li><strong>Partitive:</strong> Used for indefinite amounts, adds '-a/-ä' (e.g., <em>autoa</em>).</li>
+            </ul>
+        </div>
+        <div class="grammar-section">
+            <h3>Verbs: Groups 1-6</h3>
+            <ul>
+                <li><strong>Type 1:</strong> Ending in two vowels (<em>puhua</em> - to speak).</li>
+                <li><strong>Type 2:</strong> Ending in '-da/-dä' (<em>juoda</em> - to drink).</li>
+                <li><strong>Personal Endings:</strong> -n, -t, -, -mme, -tte, -vat (minä puhun).</li>
+            </ul>
+        </div>
+    `,
+    intermediate: `
+        <div class="grammar-section">
+            <h3>Consonant Gradation (KPT)</h3>
+            <ul>
+                <li>Changing consonants in the stem (e.g., <em>kukka</em> -> <em>kukan</em>).</li>
+                <li><strong>Strong to Weak:</strong> kk -> k, pp -> p, tt -> t.</li>
+                <li>Used in many cases like Genitive and Missä (Inessive).</li>
+            </ul>
+        </div>
+        <div class="grammar-section">
+            <h3>Object Rules</h3>
+            <ul>
+                <li>The object can be Partitive, Genitive, or Nominative.</li>
+                <li>Negative sentence -> Always Partitive object.</li>
+                <li>Resultative action -> Genitive/Accusative.</li>
+            </ul>
+        </div>
+    `,
+    advanced: `
+        <div class="grammar-section">
+            <h3>The Passive Voice</h3>
+            <ul>
+                <li>Used when the doer is unknown or unimportant.</li>
+                <li>Formal: <em>Täällä puhutaan suomea</em> (Finnish is spoken here).</li>
+                <li>Colloquial: We speak (<em>Me puhutaan</em>).</li>
+            </ul>
+        </div>
+        <div class="grammar-section">
+            <h3>Participial Phrases</h3>
+            <ul>
+                <li>Replacing subordinate clauses (e.g., <em>-vAn</em>, <em>-neen</em>).</li>
+                <li><em>Näin miehen kävelevän</em> (I saw the man walking).</li>
+            </ul>
+        </div>
+    `
+};
+
 let isListening = false;
 let currentLanguage = 'en-US'; // Default input
 let targetLanguage = 'fi';      // Default target
@@ -161,3 +256,73 @@ micBtn.addEventListener('click', () => {
 
 // Initialize State
 updateLanguageConfig();
+
+// Grammar Logic
+const loadGrammarLevel = (level) => {
+    grammarContent.innerHTML = grammarData[level];
+    levelTabs.forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.level === level);
+    });
+};
+
+grammarOpen.addEventListener('click', () => {
+    grammarModal.classList.add('active');
+    loadGrammarLevel('elementary');
+});
+
+grammarClose.addEventListener('click', () => {
+    grammarModal.classList.remove('active');
+});
+
+grammarModal.addEventListener('click', (e) => {
+    if (e.target === grammarModal) grammarModal.classList.remove('active');
+});
+
+levelTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        loadGrammarLevel(tab.dataset.level);
+    });
+});
+
+// Vocabulary Logic
+let currentVocabLevel = 'A1';
+
+const renderVocabList = (filter = "") => {
+    const list = vocabData[currentVocabLevel];
+    const filtered = list.filter(item => 
+        item.fi.toLowerCase().includes(filter.toLowerCase()) || 
+        item.en.toLowerCase().includes(filter.toLowerCase())
+    );
+
+    vocabList.innerHTML = filtered.map(item => `
+        <div class="vocab-card glass">
+            <span class="v-finnish">${item.fi}</span>
+            <span class="v-english">${item.en}</span>
+        </div>
+    `).join('');
+};
+
+vocabOpen.addEventListener('click', () => {
+    vocabModal.classList.add('active');
+    renderVocabList();
+});
+
+vocabClose.addEventListener('click', () => {
+    vocabModal.classList.remove('active');
+});
+
+vocabModal.addEventListener('click', (e) => {
+    if (e.target === vocabModal) vocabModal.classList.remove('active');
+});
+
+vocabTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        currentVocabLevel = tab.dataset.level;
+        vocabTabs.forEach(t => t.classList.toggle('active', t === tab));
+        renderVocabList(vocabSearch.value);
+    });
+});
+
+vocabSearch.addEventListener('input', (e) => {
+    renderVocabList(e.target.value);
+});

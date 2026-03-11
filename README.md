@@ -1,4 +1,4 @@
-# Aura Voice Translator 🎙️✨
+# RAHA Voice Translator 🎙️✨
 
 A beautiful, glassmorphic multilingual voice translator that converts spoken English to Finnish and vice-versa in real-time.
 

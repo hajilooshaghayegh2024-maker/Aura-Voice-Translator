@@ -1,7 +1,7 @@
 {
-  "name": "aura-voice-translator",
+  "name": "raha-voice-translator",
   "version": "1.0.0",
-  "description": "Multilingual Voice Translator with Aura aesthetics",
+  "description": "Multilingual Voice Translator with RAHA aesthetics",
   "main": "index.html",
   "scripts": {
     "start": "npx serve -l 3000",
