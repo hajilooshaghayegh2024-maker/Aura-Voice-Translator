@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Translator | EN ↔ FI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="app-container">
+        <header>
+            <h1 class="glass-text">Aura</h1>
+            <p class="subtitle">Live Voice Translation</p>
+        </header>
+
+        <section class="controls">
+            <div class="toggle-container">
+                <span class="lang-label" id="label-en">English</span>
+                <label class="switch">
+                    <input type="checkbox" id="lang-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="lang-label" id="label-fi">Finnish</span>
+            </div>
+        </section>
+
+        <section class="translation-display">
+            <div class="card glass">
+                <div class="card-header">
+                    <span id="source-title">Listening...</span>
+                    <div class="status-indicator" id="status-dot"></div>
+                </div>
+                <div class="text-area" id="source-text">Tap the mic to start...</div>
+            </div>
+
+            <div class="card glass result-card">
+                <div class="card-header">
+                    <span id="target-title">Translation</span>
+                </div>
+                <div class="text-area translated" id="target-text">Translation will appear here.</div>
+            </div>
+        </section>
+
+        <section class="action-bar">
+            <button id="mic-btn" class="mic-button">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+            </button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
