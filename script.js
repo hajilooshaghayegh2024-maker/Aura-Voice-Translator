@@ -36,6 +36,17 @@ const vocabList = document.getElementById('vocab-list');
 const vocabSearch = document.getElementById('vocab-search');
 const vocabTabs = document.querySelectorAll('.vocab-tab');
 
+// Audio Logic for Pronunciation
+const speakFinnish = (text) => {
+    if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'fi-FI';
+        window.speechSynthesis.speak(utterance);
+    } else {
+        alert("Sorry, your browser does not support text-to-speech.");
+    }
+};
+
 const vocabData = {
     A1: [
         { fi: "Terve", en: "Hello" }, { fi: "Kiitos", en: "Thank you" }, { fi: "Kyllä", en: "Yes" }, 
@@ -296,11 +307,22 @@ const renderVocabList = (filter = "") => {
 
     vocabList.innerHTML = filtered.map(item => `
         <div class="vocab-card glass">
-            <span class="v-finnish">${item.fi}</span>
+            <div class="vocab-header">
+                <span class="v-finnish">${item.fi}</span>
+                <button class="speaker-btn" onclick="speakFinnish('${item.fi.replace(/'/g, "\\'")}')">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                </button>
+            </div>
             <span class="v-english">${item.en}</span>
         </div>
     `).join('');
 };
+
+// Make speakFinnish globally accessible for onclick
+window.speakFinnish = speakFinnish;
 
 vocabOpen.addEventListener('click', () => {
     vocabModal.classList.add('active');
