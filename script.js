@@ -49,25 +49,56 @@ const speakFinnish = (text) => {
 
 const vocabData = {
     A1: [
-        { fi: "Terve", en: "Hello" }, { fi: "Kiitos", en: "Thank you" }, { fi: "Kyllä", en: "Yes" }, 
-        { fi: "Ei", en: "No" }, { fi: "Mitä kuuluu?", en: "How are you?" }, { fi: "Hyvää huomenta", en: "Good morning" },
-        { fi: "Anteeksi", en: "Sorry / Excuse me" }, { fi: "Näkemiin", en: "Goodbye" }, { fi: "Minä", en: "I" },
-        { fi: "Sinä", en: "You" }, { fi: "Hän", en: "He / She" }, { fi: "Me", en: "We" },
-        { fi: "He", en: "They" }, { fi: "Kissa", en: "Cat" }, { fi: "Koira", en: "Dog" },
-        { fi: "Talote", en: "House" }, { fi: "Kirja", en: "Book" }, { fi: "Vesi", en: "Water" },
-        { fi: "Ruoka", en: "Food" }, { fi: "Yksi", en: "One" }, { fi: "Kaksi", en: "Two" }
+        // Numbers & Time
+        { fi: "Yksi", en: "One" }, { fi: "Kaksi", en: "Two" }, { fi: "Kolme", en: "Three" }, { fi: "Neljä", en: "Four" }, { fi: "Viisi", en: "Five" },
+        { fi: "Maanantai", en: "Monday" }, { fi: "Tiistai", en: "Tuesday" }, { fi: "Keskiviikko", en: "Wednesday" }, { fi: "Torstai", en: "Thursday" }, { fi: "Perjantai", en: "Friday" },
+        { fi: "Tänään", en: "Today" }, { fi: "Huomenna", en: "Tomorrow" }, { fi: "Eilen", en: "Yesterday" },
+        // Common Verbs
+        { fi: "Olla", en: "To be" }, { fi: "Mennä", en: "To go" }, { fi: "Tulla", en: "To come" }, { fi: "Syödä", en: "To eat" }, { fi: "Juoda", en: "To drink" },
+        { fi: "Nukkua", en: "To sleep" }, { fi: "Tehdä", en: "To do / To make" }, { fi: "Nähdä", en: "To see" }, { fi: "Ostaa", en: "To buy" },
+        // People & Family
+        { fi: "Minä", en: "I" }, { fi: "Sinä", en: "You" }, { fi: "Hän", en: "He / She" }, { fi: "Me", en: "We" }, { fi: "Te", en: "You (plural)" }, { fi: "He", en: "They" },
+        { fi: "Äiti", en: "Mother" }, { fi: "Isä", en: "Father" }, { fi: "Veli", en: "Brother" }, { fi: "Sisko", en: "Sister" }, { fi: "Lapsi", en: "Child" },
+        // Nature & Animals
+        { fi: "Kissa", en: "Cat" }, { fi: "Koira", en: "Dog" }, { fi: "Lintu", en: "Bird" }, { fi: "Kala", en: "Fish" }, { fi: "Metsä", en: "Forest" },
+        { fi: "Järvi", en: "Lake" }, { fi: "Meri", en: "Sea" }, { fi: "Aurinko", en: "Sun" }, { fi: "Kuu", en: "Moon" }, { fi: "Puu", en: "Tree" },
+        // Home & Objects
+        { fi: "Talo", en: "House" }, { fi: "Koti", en: "Home" }, { fi: "Ovi", en: "Door" }, { fi: "Ikkuna", en: "Window" }, { fi: "Pöytä", en: "Table" },
+        { fi: "Tuoli", en: "Chair" }, { fi: "Sänky", en: "Bed" }, { fi: "Kirja", en: "Book" }, { fi: "Kynä", en: "Pen" }, { fi: "Puhelin", en: "Phone" },
+        // Colors & Adjectives
+        { fi: "Punainen", en: "Red" }, { fi: "Sininen", en: "Blue" }, { fi: "Vihreä", en: "Green" }, { fi: "Keltainen", en: "Yellow" }, { fi: "Musta", en: "Black" }, { fi: "Valkoinen", en: "White" },
+        { fi: "Hyvä", en: "Good" }, { fi: "Paha", en: "Bad" }, { fi: "Suuri", en: "Large" }, { fi: "Pieni", en: "Small" }, { fi: "Uusi", en: "New" }, { fi: "Vanha", en: "Old" },
+        // Basic Needs & Phrases
+        { fi: "Terve", en: "Hello" }, { fi: "Kiitos", en: "Thank you" }, { fi: "Kyllä", en: "Yes" }, { fi: "Ei", en: "No" }, { fi: "Anteeksi", en: "Sorry" },
+        { fi: "Vesi", en: "Water" }, { fi: "Ruoka", en: "Food" }, { fi: "Kahvi", en: "Coffee" }, { fi: "Maito", en: "Milk" }, { fi: "Leipä", en: "Bread" }
     ],
     B1: [
-        { fi: "Ymmärtää", en: "To understand" }, { fi: "Tarvita", en: "To need" }, { fi: "Mahdollisuus", en: "Opportunity / Chance" },
-        { fi: "Päättää", en: "To decide" }, { fi: "Vaikea", en: "Difficult" }, { fi: "Helppo", en: "Easy" },
-        { fi: "Tärkeä", en: "Important" }, { fi: "Kehittää", en: "To develop" }, { fi: "Yhteiskunta", en: "Society" },
-        { fi: "Ympäristö", en: "Environment" }, { fi: "Osallistua", en: "To participate" }, { fi: "Kokeilla", en: "To try" }
+        // Work & Education
+        { fi: "Työpaikka", en: "Workplace" }, { fi: "Palkka", en: "Salary" }, { fi: "Loma", en: "Holiday / Vacation" }, { fi: "Yritys", en: "Company" },
+        { fi: "Opiskella", en: "To study" }, { fi: "Tutkinto", en: "Degree" }, { fi: "Harjoittelu", en: "Internship" }, { fi: "Asiakas", en: "Customer / Client" },
+        // Emotions & Health
+        { fi: "Onnellinen", en: "Happy" }, { fi: "Surullinen", en: "Sad" }, { fi: "Vihainen", en: "Angry" }, { fi: "Väsynyt", en: "Tired" },
+        { fi: "Terveys", en: "Health" }, { fi: "Lääkäri", en: "Doctor" }, { fi: "Sairaala", en: "Hospital" }, { fi: "Lääke", en: "Medicine" },
+        // Travel & Movement
+        { fi: "Matkustaa", en: "To travel" }, { fi: "Lentokone", en: "Airplane" }, { fi: "Juna", en: "Train" }, { fi: "Laiva", en: "Ship / Boat" },
+        { fi: "Hotelli", en: "Hotel" }, { fi: "Ranta", en: "Beach" }, { fi: "Vuori", en: "Mountain" }, { fi: "Kaupunki", en: "City / Town" },
+        // Abstract & Social
+        { fi: "Mahdollisuus", en: "Opportunity" }, { fi: "Päättää", en: "To decide" }, { fi: "Suunnitella", en: "To plan" }, { fi: "Ymmärtää", en: "To understand" },
+        { fi: "Keskustella", en: "To discuss / To chat" }, { fi: "Mielipide", en: "Opinion" }, { fi: "Tärkeä", en: "Important" }, { fi: "Erilainen", en: "Different" },
+        { fi: "Sama", en: "Same" }, { fi: "Ehkä", en: "Maybe" }, { fi: "Varmaan", en: "Probably" }, { fi: "Tavallinen", en: "Ordinary" }
     ],
     C1: [
-        { fi: "Edellyttää", en: "To require / To prerequisite" }, { fi: "Riippumaton", en: "Independent" },
-        { fi: "Monimutkainen", en: "Complex" }, { fi: "Vaikutusvaltainen", en: "Influential" },
-        { fi: "Perusteellinen", en: "Thorough" }, { fi: "Samanaikaisesti", en: "Simultaneously" },
-        { fi: "Välttämätön", en: "Essential" }, { fi: "Kattava", en: "Comprehensive" }
+        // Society & Politics
+        { fi: "Yhteiskunta", en: "Society" }, { fi: "Hallitus", en: "Government" }, { fi: "Lainsäädäntö", en: "Legislation" }, { fi: "Vaikutusvalta", en: "Influence" },
+        { fi: "Oikeudenmukaisuus", en: "Justice" }, { fi: "Tasa-arvo", en: "Equality" }, { fi: "Vastuullisuus", en: "Responsibility" }, { fi: "Kansalaisuus", en: "Citizenship" },
+        // Environment & Science
+        { fi: "Ympäristö", en: "Environment" }, { fi: "Kestävä kehitys", en: "Sustainable development" }, { fi: "Ilmastonmuutos", en: "Climate change" },
+        { fi: "Tutkimus", en: "Research" }, { fi: "Tiede", en: "Science" }, { fi: "Teknologia", en: "Technology" }, { fi: "Innovaatio", en: "Innovation" },
+        // Advanced Concepts
+        { fi: "Edellyttää", en: "To require / To prerequisite" }, { fi: "Riippumaton", en: "Independent" }, { fi: "Monimutkainen", en: "Complex" },
+        { fi: "Perusteellinen", en: "Thorough" }, { fi: "Samanaikaisesti", en: "Simultaneously" }, { fi: "Välttämätön", en: "Essential" },
+        { fi: "Kattava", en: "Comprehensive" }, { fi: "Olennaiselta osin", en: "Essentially" }, { fi: "Pääasiallisesti", en: "Mainly" },
+        { fi: "Poikkeuksellinen", en: "Exceptional" }, { fi: "Ristiriita", en: "Conflict / Contradiction" }, { fi: "Yhteistyö", en: "Cooperation" }
     ]
 };
 
